@@ -1,0 +1,33 @@
+---
+
+- name: "roles.node_exporter.tasks.main: Download binary"
+  unarchive:
+    src: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+    dest: /tmp/
+    remote_src: yes
+
+- name: "roles.node_exporter.tasks.main: Install binary"
+  copy:
+    src: "{{ item }}"
+    remote_src: yes
+    dest: /usr/local/bin/
+    mode: 0755
+  with_items:
+    - "/tmp/node_exporter-{{ node_exporter_version }}.linux-amd64/node_exporter"
+
+- name: "roles.node_exporter.tasks.main: Deploy directory"
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+  with_items:
+    - src: "node_exporter"
+      dst: "/etc/default/node_exporter"
+    - src: "node_exporter.service"
+      dst: "/etc/systemd/system/node_exporter.service"
+
+- name: "roles.node_exporter.tasks.main: Enable daemon"
+  service:
+    name: "node_exporter"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

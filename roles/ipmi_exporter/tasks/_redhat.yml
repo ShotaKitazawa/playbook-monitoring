@@ -1,0 +1,10 @@
+---
+
+- name: "roles.ipmi_exporter.tasks._redhat: Install packages"
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - freeipmi
+    - freeipmi-devel
+

@@ -1,0 +1,21 @@
+---
+
+- hosts: ipmi_exporter
+  become: yes
+  roles:
+    - ipmi_exporter
+    # TODO
+    #- create_prometheus_conf_ipmi
+
+- hosts: node_exporter
+  become: yes
+  roles:
+    - node_exporter
+    # TODO
+    #- create_prometheus_conf_node
+
+- hosts: promtail
+  become: yes
+  roles:
+    - promtail
+

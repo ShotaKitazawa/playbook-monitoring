@@ -1,0 +1,9 @@
+---
+
+- name: "roles.ipmi_exporter.tasks._debian: Install packages"
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - freeipmi-tools
+

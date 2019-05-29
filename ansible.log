@@ -1,0 +1,85 @@
+2019-03-21 04:07:19,980 passlib.registry registered 'md5_crypt' handler: <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2019-03-21 04:07:19,986 p=95110 u=admin |  PLAY [ipmi] *************************************************************************************************************************************************************************************
+2019-03-21 04:07:19,998 p=95110 u=admin |  TASK [Gathering Facts] **************************************************************************************************************************************************************************
+2019-03-21 04:07:22,303 p=95110 u=admin |  ok: [home02]
+2019-03-21 04:07:22,325 p=95110 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Install packages] *************************************************************************************************************************
+2019-03-21 04:07:24,845 p=95110 u=admin |  fatal: [home02]: FAILED! => {"changed": false, "cmd": "apt-get update", "msg": "[Errno 2] No such file or directory", "rc": 2}
+2019-03-21 04:07:24,846 p=95110 u=admin |  PLAY RECAP **************************************************************************************************************************************************************************************
+2019-03-21 04:07:24,847 p=95110 u=admin |  home02                     : ok=1    changed=0    unreachable=0    failed=1   
+2019-03-21 04:12:10,877 passlib.registry registered 'md5_crypt' handler: <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2019-03-21 04:12:10,883 p=6171 u=admin |  PLAY [ipmi] *************************************************************************************************************************************************************************************
+2019-03-21 04:12:10,896 p=6171 u=admin |  TASK [Gathering Facts] **************************************************************************************************************************************************************************
+2019-03-21 04:12:12,300 p=6171 u=admin |  ok: [home02]
+2019-03-21 04:12:12,322 p=6171 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include RedHat specific tasks] ************************************************************************************************************
+2019-03-21 04:12:12,386 p=6171 u=admin |  included: /Users/admin/Working/playbook-monitoring/roles/ipmi_exporter/tasks/_redhat.yml for home02
+2019-03-21 04:12:12,409 p=6171 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks._redhat: Install packages] **********************************************************************************************************************
+2019-03-21 04:12:12,432 p=6171 u=admin |  [DEPRECATION WARNING]: Invoking "apt" only once while using a loop via squash_actions is deprecated. Instead of using a loop to supply multiple items and specifying `name: "{{ item }}"`, 
+please use `name: ['freeipmi', 'freeipmi-devel']` and remove the loop. This feature will be removed in version 2.11. Deprecation warnings can be disabled by setting deprecation_warnings=False 
+in ansible.cfg.
+2019-03-21 04:12:12,992 p=6171 u=admin |  failed: [home02] (item=['freeipmi', 'freeipmi-devel']) => {"changed": false, "cmd": "apt-get update", "item": ["freeipmi", "freeipmi-devel"], "msg": "[Errno 2] No such file or directory", "rc": 2}
+2019-03-21 04:12:12,994 p=6171 u=admin |  PLAY RECAP **************************************************************************************************************************************************************************************
+2019-03-21 04:12:12,995 p=6171 u=admin |  home02                     : ok=2    changed=0    unreachable=0    failed=1   
+2019-03-21 04:12:41,659 passlib.registry registered 'md5_crypt' handler: <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2019-03-21 04:12:41,667 p=7421 u=admin |  PLAY [ipmi] *************************************************************************************************************************************************************************************
+2019-03-21 04:12:41,682 p=7421 u=admin |  TASK [Gathering Facts] **************************************************************************************************************************************************************************
+2019-03-21 04:12:42,940 p=7421 u=admin |  ok: [home02]
+2019-03-21 04:12:42,964 p=7421 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include RedHat specific tasks] ************************************************************************************************************
+2019-03-21 04:12:43,024 p=7421 u=admin |  included: /Users/admin/Working/playbook-monitoring/roles/ipmi_exporter/tasks/_redhat.yml for home02
+2019-03-21 04:12:43,052 p=7421 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks._redhat: Install packages] **********************************************************************************************************************
+2019-03-21 04:12:43,076 p=7421 u=admin |  [DEPRECATION WARNING]: Invoking "yum" only once while using a loop via squash_actions is deprecated. Instead of using a loop to supply multiple items and specifying `name: "{{ item }}"`, 
+please use `name: ['freeipmi', 'freeipmi-devel']` and remove the loop. This feature will be removed in version 2.11. Deprecation warnings can be disabled by setting deprecation_warnings=False 
+in ansible.cfg.
+2019-03-21 04:13:45,406 p=7421 u=admin |  changed: [home02] => (item=['freeipmi', 'freeipmi-devel'])
+2019-03-21 04:13:45,429 p=7421 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include Debian specific tasks] ************************************************************************************************************
+2019-03-21 04:13:45,455 p=7421 u=admin |  skipping: [home02]
+2019-03-21 04:13:45,482 p=7421 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Create directory] *************************************************************************************************************************
+2019-03-21 04:13:45,869 p=7421 u=admin |  changed: [home02] => (item=/etc/ipmi_exporter)
+2019-03-21 04:13:45,893 p=7421 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Install binary] **************************************************************************************************************************
+2019-03-21 04:13:47,692 p=7421 u=admin |  changed: [home02] => (item={'src': 'ipmi_exporter', 'dst': '/usr/local/bin/ipmi_exporter'})
+2019-03-21 04:13:47,721 p=7421 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Deploy directory] ************************************************************************************************************************
+2019-03-21 04:13:48,537 p=7421 u=admin |  changed: [home02] => (item={'src': 'ipmi.yaml', 'dst': '/etc/ipmi_exporter/ipmi.yaml'})
+2019-03-21 04:13:49,238 p=7421 u=admin |  changed: [home02] => (item={'src': 'ipmi_exporter.service', 'dst': '/etc/systemd/system/ipmi_exporter.service'})
+2019-03-21 04:13:49,266 p=7421 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Enable daemon] ****************************************************************************************************************************
+2019-03-21 04:13:50,221 p=7421 u=admin |  changed: [home02]
+2019-03-21 04:13:50,231 p=7421 u=admin |  PLAY [server] ***********************************************************************************************************************************************************************************
+2019-03-21 04:13:50,236 p=7421 u=admin |  TASK [Gathering Facts] **************************************************************************************************************************************************************************
+2019-03-21 04:13:51,356 p=7421 u=admin |  ok: [home02]
+2019-03-21 04:13:52,501 p=7421 u=admin |  ok: [home01]
+2019-03-21 04:13:52,715 p=7421 u=admin |  ok: [kube02]
+2019-03-21 04:13:53,243 p=7421 u=admin |  ok: [kube01]
+2019-03-21 04:13:53,381 p=7421 u=admin |  ok: [kube03]
+2019-03-21 04:13:53,416 p=7421 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Download binary] **************************************************************************************************************************
+2019-03-21 04:13:59,878 p=7421 u=admin |  changed: [kube03]
+2019-03-21 04:13:59,880 p=7421 u=admin |  changed: [kube02]
+2019-03-21 04:14:00,052 p=7421 u=admin |  changed: [home01]
+2019-03-21 04:14:01,413 p=7421 u=admin |  changed: [home02]
+2019-03-21 04:14:01,782 p=7421 u=admin |  changed: [kube01]
+2019-03-21 04:14:01,814 p=7421 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Install binary] ***************************************************************************************************************************
+2019-03-21 04:14:02,306 p=7421 u=admin |  changed: [home02] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-03-21 04:14:02,321 p=7421 u=admin |  changed: [home01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-03-21 04:14:02,387 p=7421 u=admin |  changed: [kube02] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-03-21 04:14:02,416 p=7421 u=admin |  changed: [kube03] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-03-21 04:14:02,876 p=7421 u=admin |  changed: [kube01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-03-21 04:14:02,911 p=7421 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Deploy directory] *************************************************************************************************************************
+2019-03-21 04:14:03,720 p=7421 u=admin |  changed: [home02] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-03-21 04:14:03,768 p=7421 u=admin |  changed: [kube02] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-03-21 04:14:03,844 p=7421 u=admin |  changed: [home01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-03-21 04:14:03,869 p=7421 u=admin |  changed: [kube03] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-03-21 04:14:04,443 p=7421 u=admin |  changed: [home02] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-03-21 04:14:04,474 p=7421 u=admin |  changed: [kube02] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-03-21 04:14:04,515 p=7421 u=admin |  changed: [kube03] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-03-21 04:14:04,642 p=7421 u=admin |  changed: [home01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-03-21 04:14:05,079 p=7421 u=admin |  changed: [kube01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-03-21 04:14:06,788 p=7421 u=admin |  changed: [kube01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-03-21 04:14:06,822 p=7421 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Enable daemon] ****************************************************************************************************************************
+2019-03-21 04:14:07,268 p=7421 u=admin |  changed: [home01]
+2019-03-21 04:14:07,385 p=7421 u=admin |  changed: [home02]
+2019-03-21 04:14:07,796 p=7421 u=admin |  changed: [kube03]
+2019-03-21 04:14:07,800 p=7421 u=admin |  changed: [kube02]
+2019-03-21 04:14:07,912 p=7421 u=admin |  changed: [kube01]
+2019-03-21 04:14:07,916 p=7421 u=admin |  PLAY RECAP **************************************************************************************************************************************************************************************
+2019-03-21 04:14:07,917 p=7421 u=admin |  home01                     : ok=5    changed=4    unreachable=0    failed=0   
+2019-03-21 04:14:07,917 p=7421 u=admin |  home02                     : ok=12   changed=9    unreachable=0    failed=0   
+2019-03-21 04:14:07,917 p=7421 u=admin |  kube01                     : ok=5    changed=4    unreachable=0    failed=0   
+2019-03-21 04:14:07,917 p=7421 u=admin |  kube02                     : ok=5    changed=4    unreachable=0    failed=0   
+2019-03-21 04:14:07,917 p=7421 u=admin |  kube03                     : ok=5    changed=4    unreachable=0    failed=0   

@@ -1,0 +1,42 @@
+---
+
+- name: "roles.ipmi_exporter.tasks.main: Include RedHat specific tasks"
+  when: "ansible_os_family == 'RedHat'"
+  include_tasks: _redhat.yml
+
+- name: "roles.ipmi_exporter.tasks.main: Include Debian specific tasks"
+  when: "ansible_os_family == 'Debian'"
+  include_tasks: _debian.yml
+
+- name: "roles.ipmi_exporter.tasks.main: Create directory"
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "/etc/ipmi_exporter"
+
+- name: "roles.ipmi_exporter.tasks.main : Install binary"
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    mode: 0755
+  with_items:
+    - src: "ipmi_exporter"
+      dst: "/usr/local/bin/ipmi_exporter"
+
+- name: "roles.ipmi_exporter.tasks.main : Deploy directory"
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+  with_items:
+    - src: "ipmi.yaml"
+      dst: "/etc/ipmi_exporter/ipmi.yaml"
+    - src: "ipmi_exporter.service"
+      dst: "/etc/systemd/system/ipmi_exporter.service"
+
+- name: "roles.ipmi_exporter.tasks.main: Enable daemon"
+  service:
+    name: "ipmi_exporter"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

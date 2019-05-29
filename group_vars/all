@@ -1,0 +1,6 @@
+node_exporter_version: 0.17.0
+rsyslog_udp_servers:
+  - 172.16.30.131
+rsyslog_tcp_servers:
+  - 172.16.30.132
+

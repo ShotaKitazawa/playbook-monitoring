@@ -1,0 +1,10 @@
+[Unit]
+Description=IPMI Exporter
+Documentation=https://github.com/soundcloud/ipmi_exporter
+
+[Service]
+User=root
+ExecStart=/usr/local/bin/ipmi_exporter -config.file /etc/ipmi_exporter/ipmi.yaml
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+[node_exporter]
+home01    ansible_ssh_host=192.168.0.11
+home02    ansible_ssh_host=192.168.0.12
+master01  ansible_ssh_host=192.168.0.31
+node01    ansible_ssh_host=192.168.0.42
+node02    ansible_ssh_host=192.168.0.42
+node03    ansible_ssh_host=192.168.0.43
+
+[ipmi_exporter]
+home02 ansible_ssh_host=192.168.0.12
+
+[promtail]
+home01    ansible_ssh_host=192.168.0.11
+home02    ansible_ssh_host=192.168.0.12
+master01  ansible_ssh_host=192.168.0.31
+node01    ansible_ssh_host=192.168.0.42
+node02    ansible_ssh_host=192.168.0.42
+node03    ansible_ssh_host=192.168.0.43
