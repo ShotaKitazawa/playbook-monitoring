@@ -83,3 +83,294 @@ in ansible.cfg.
 2019-03-21 04:14:07,917 p=7421 u=admin |  kube01                     : ok=5    changed=4    unreachable=0    failed=0   
 2019-03-21 04:14:07,917 p=7421 u=admin |  kube02                     : ok=5    changed=4    unreachable=0    failed=0   
 2019-03-21 04:14:07,917 p=7421 u=admin |  kube03                     : ok=5    changed=4    unreachable=0    failed=0   
+2019-07-21 11:15:38,999 p=66074 u=admin |  ERROR! the playbook: playbook.yml could not be found
+2019-07-21 11:15:47,947 passlib.registry registered 'md5_crypt' handler: <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2019-07-21 11:15:47,953 p=66650 u=admin |  PLAY [ipmi_exporter] ****************************************************************************************
+2019-07-21 11:15:47,969 p=66650 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:15:48,542 p=66650 u=admin |  fatal: [home02]: UNREACHABLE! => {"changed": false, "msg": "SSH Error: data could not be sent to remote host \"192.168.0.12\". Make sure this host can be reached over ssh", "unreachable": true}
+2019-07-21 11:15:48,544 p=66650 u=admin |  PLAY RECAP **************************************************************************************************
+2019-07-21 11:15:48,544 p=66650 u=admin |  home02                     : ok=0    changed=0    unreachable=1    failed=0   
+2019-07-21 11:17:13,492 passlib.registry registered 'md5_crypt' handler: <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2019-07-21 11:17:13,497 p=72019 u=admin |  PLAY [ipmi_exporter] ****************************************************************************************
+2019-07-21 11:17:13,582 p=72019 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:17:17,378 p=72019 u=admin |  ok: [home02]
+2019-07-21 11:17:17,404 p=72019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include RedHat specific tasks] ************************
+2019-07-21 11:17:17,456 p=72019 u=admin |  included: /Users/admin/Working/playbook-monitoring/roles/ipmi_exporter/tasks/_redhat.yml for home02
+2019-07-21 11:17:17,480 p=72019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks._redhat: Install packages] **********************************
+2019-07-21 11:17:17,506 p=72019 u=admin |  [DEPRECATION WARNING]: Invoking "yum" only once while using a loop via squash_actions is deprecated. Instead
+ of using a loop to supply multiple items and specifying `name: "{{ item }}"`, please use `name: 
+['freeipmi', 'freeipmi-devel']` and remove the loop. This feature will be removed in version 2.11. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+2019-07-21 11:17:25,743 p=72019 u=admin |  ok: [home02] => (item=['freeipmi', 'freeipmi-devel'])
+2019-07-21 11:17:25,770 p=72019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include Debian specific tasks] ************************
+2019-07-21 11:17:25,793 p=72019 u=admin |  skipping: [home02]
+2019-07-21 11:17:25,813 p=72019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Create directory] *************************************
+2019-07-21 11:17:26,372 p=72019 u=admin |  ok: [home02] => (item=/etc/ipmi_exporter)
+2019-07-21 11:17:26,396 p=72019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Install binary] **************************************
+2019-07-21 11:17:28,372 p=72019 u=admin |  ok: [home02] => (item={'src': 'ipmi_exporter', 'dst': '/usr/local/bin/ipmi_exporter'})
+2019-07-21 11:17:28,413 p=72019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Deploy directory] ************************************
+2019-07-21 11:17:29,498 p=72019 u=admin |  ok: [home02] => (item={'src': 'ipmi.yaml', 'dst': '/etc/ipmi_exporter/ipmi.yaml'})
+2019-07-21 11:17:30,457 p=72019 u=admin |  ok: [home02] => (item={'src': 'ipmi_exporter.service', 'dst': '/etc/systemd/system/ipmi_exporter.service'})
+2019-07-21 11:17:30,481 p=72019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Enable daemon] ****************************************
+2019-07-21 11:17:32,975 p=72019 u=admin |  changed: [home02]
+2019-07-21 11:17:32,985 p=72019 u=admin |  PLAY [node_exporter] ****************************************************************************************
+2019-07-21 11:17:33,005 p=72019 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:17:34,421 p=72019 u=admin |  ok: [home02]
+2019-07-21 11:17:35,790 p=72019 u=admin |  ok: [home01]
+2019-07-21 11:17:37,557 p=72019 u=admin |  ok: [master01]
+2019-07-21 11:17:37,599 p=72019 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Download binary] **************************************
+2019-07-21 11:17:43,341 p=72019 u=admin |  changed: [home02]
+2019-07-21 11:18:10,739 p=72019 u=admin |  changed: [home01]
+2019-07-21 11:18:29,092 p=72019 u=admin |  changed: [master01]
+2019-07-21 11:18:29,125 p=72019 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Install binary] ***************************************
+2019-07-21 11:18:29,887 p=72019 u=admin |  changed: [master01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:18:30,087 p=72019 u=admin |  ok: [home02] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:18:31,481 p=72019 u=admin |  ok: [home01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:18:31,512 p=72019 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Deploy directory] *************************************
+2019-07-21 11:18:32,514 p=72019 u=admin |  ok: [home02] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:18:32,649 p=72019 u=admin |  changed: [master01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:18:33,289 p=72019 u=admin |  ok: [home02] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:18:33,418 p=72019 u=admin |  changed: [master01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:18:34,893 p=72019 u=admin |  ok: [home01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:18:38,365 p=72019 u=admin |  ok: [home01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:18:38,400 p=72019 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Enable daemon] ****************************************
+2019-07-21 11:18:38,959 p=72019 u=admin |  changed: [home02]
+2019-07-21 11:18:39,427 p=72019 u=admin |  changed: [home01]
+2019-07-21 11:18:40,871 p=72019 u=admin |  changed: [master01]
+2019-07-21 11:18:40,885 p=72019 u=admin |  PLAY [promtail] *********************************************************************************************
+2019-07-21 11:18:40,909 p=72019 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:18:41,904 p=72019 u=admin |  ok: [master01]
+2019-07-21 11:18:42,035 p=72019 u=admin |  ok: [home01]
+2019-07-21 11:18:42,123 p=72019 u=admin |  ok: [home02]
+2019-07-21 11:18:42,149 p=72019 u=admin |  TASK [promtail : roles.promtail.tasks.main: Download binary] ************************************************
+2019-07-21 11:18:53,218 p=72019 u=admin |  fatal: [home02]: FAILED! => {"changed": false, "msg": "Failed to find handler for \"/root/.ansible/tmp/ansible-tmp-1563675522.2871811-62589000061285/promtail_v0.1.0_linux_amd64\". Make sure the required command to extract the file is installed. Command \"/usr/bin/unzip\" could not handle archive. Command \"/usr/bin/gtar\" could not handle archive."}
+2019-07-21 11:18:54,918 p=72019 u=admin |  fatal: [home01]: FAILED! => {"changed": false, "msg": "Failed to find handler for \"/root/.ansible/tmp/ansible-tmp-1563675522.252245-77890862150080/promtail_v0.1.0_linux_amd64\". Make sure the required command to extract the file is installed. Command \"/usr/bin/unzip\" could not handle archive. Command \"/usr/bin/gtar\" could not handle archive."}
+2019-07-21 11:20:07,141 p=72019 u=admin |   [ERROR]: User interrupted execution
+
+2019-07-21 11:22:54,644 passlib.registry registered 'md5_crypt' handler: <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2019-07-21 11:22:54,648 p=94481 u=admin |  PLAY [ipmi_exporter] ****************************************************************************************
+2019-07-21 11:22:54,664 p=94481 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:22:56,300 p=94481 u=admin |  ok: [home02]
+2019-07-21 11:22:56,325 p=94481 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include RedHat specific tasks] ************************
+2019-07-21 11:22:56,383 p=94481 u=admin |  included: /Users/admin/Working/playbook-monitoring/roles/ipmi_exporter/tasks/_redhat.yml for home02
+2019-07-21 11:22:56,406 p=94481 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks._redhat: Install packages] **********************************
+2019-07-21 11:22:56,431 p=94481 u=admin |  [DEPRECATION WARNING]: Invoking "yum" only once while using a loop via squash_actions is deprecated. Instead
+ of using a loop to supply multiple items and specifying `name: "{{ item }}"`, please use `name: 
+['freeipmi', 'freeipmi-devel']` and remove the loop. This feature will be removed in version 2.11. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+2019-07-21 11:23:00,934 p=94481 u=admin |  ok: [home02] => (item=['freeipmi', 'freeipmi-devel'])
+2019-07-21 11:23:00,960 p=94481 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include Debian specific tasks] ************************
+2019-07-21 11:23:00,984 p=94481 u=admin |  skipping: [home02]
+2019-07-21 11:23:01,012 p=94481 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Create directory] *************************************
+2019-07-21 11:23:01,482 p=94481 u=admin |  ok: [home02] => (item=/etc/ipmi_exporter)
+2019-07-21 11:23:01,505 p=94481 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Install binary] **************************************
+2019-07-21 11:23:02,681 p=94481 u=admin |  ok: [home02] => (item={'src': 'ipmi_exporter', 'dst': '/usr/local/bin/ipmi_exporter'})
+2019-07-21 11:23:02,706 p=94481 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Deploy directory] ************************************
+2019-07-21 11:23:03,717 p=94481 u=admin |  ok: [home02] => (item={'src': 'ipmi.yaml', 'dst': '/etc/ipmi_exporter/ipmi.yaml'})
+2019-07-21 11:23:04,756 p=94481 u=admin |  ok: [home02] => (item={'src': 'ipmi_exporter.service', 'dst': '/etc/systemd/system/ipmi_exporter.service'})
+2019-07-21 11:23:04,793 p=94481 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Enable daemon] ****************************************
+2019-07-21 11:23:05,560 p=94481 u=admin |  changed: [home02]
+2019-07-21 11:23:05,574 p=94481 u=admin |  PLAY [node_exporter] ****************************************************************************************
+2019-07-21 11:23:05,580 p=94481 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:23:06,621 p=94481 u=admin |  ok: [master01]
+2019-07-21 11:23:06,865 p=94481 u=admin |  ok: [home02]
+2019-07-21 11:23:06,947 p=94481 u=admin |  ok: [home01]
+2019-07-21 11:23:06,978 p=94481 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Download binary] **************************************
+2019-07-21 11:23:12,194 p=94481 u=admin |  ok: [home02]
+2019-07-21 11:23:12,656 p=94481 u=admin |  ok: [master01]
+2019-07-21 11:23:14,024 p=94481 u=admin |  ok: [home01]
+2019-07-21 11:23:14,054 p=94481 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Install binary] ***************************************
+2019-07-21 11:23:14,894 p=94481 u=admin |  ok: [home02] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:23:14,915 p=94481 u=admin |  ok: [master01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:23:16,037 p=94481 u=admin |  ok: [home01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:23:16,063 p=94481 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Deploy directory] *************************************
+2019-07-21 11:23:16,969 p=94481 u=admin |  ok: [home02] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:23:17,010 p=94481 u=admin |  ok: [master01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:23:17,736 p=94481 u=admin |  ok: [master01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:23:17,748 p=94481 u=admin |  ok: [home02] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:23:19,554 p=94481 u=admin |  ok: [home01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:23:23,169 p=94481 u=admin |  ok: [home01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:23:23,200 p=94481 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Enable daemon] ****************************************
+2019-07-21 11:23:23,788 p=94481 u=admin |  changed: [home02]
+2019-07-21 11:23:23,962 p=94481 u=admin |  changed: [master01]
+2019-07-21 11:23:24,329 p=94481 u=admin |  changed: [home01]
+2019-07-21 11:23:24,346 p=94481 u=admin |  PLAY [promtail] *********************************************************************************************
+2019-07-21 11:23:24,370 p=94481 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:23:25,649 p=94481 u=admin |  ok: [home02]
+2019-07-21 11:23:25,707 p=94481 u=admin |  ok: [master01]
+2019-07-21 11:23:25,819 p=94481 u=admin |  ok: [home01]
+2019-07-21 11:23:25,859 p=94481 u=admin |  TASK [promtail : roles.promtail.tasks.main: Download binary] ************************************************
+2019-07-21 11:23:33,158 p=94481 u=admin |  changed: [home01]
+2019-07-21 11:23:33,376 p=94481 u=admin |  changed: [home02]
+2019-07-21 11:27:39,632 p=94481 u=admin |  changed: [master01]
+2019-07-21 11:27:39,657 p=94481 u=admin |  TASK [promtail : roles.promtail.tasks.main: Install binary] *************************************************
+2019-07-21 11:27:40,539 p=94481 u=admin |  changed: [home02] => (item=/tmp/promtail)
+2019-07-21 11:27:41,905 p=94481 u=admin |  changed: [home01] => (item=/tmp/promtail)
+2019-07-21 11:27:45,108 p=94481 u=admin |  changed: [master01] => (item=/tmp/promtail)
+2019-07-21 11:27:45,133 p=94481 u=admin |  TASK [promtail : roles.promtail.tasks.main: Deploy directory] ***********************************************
+2019-07-21 11:27:45,378 p=94481 u=admin |  An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2019-07-21 11:27:45,378 p=94481 u=admin |  failed: [master01] (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'}) => {"changed": false, "item": {"dst": "/etc/default/promtail.yaml", "src": "promtail.yaml"}, "msg": "Could not find or access 'promtail.yaml'\nSearched in:\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/promtail.yaml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2019-07-21 11:27:45,408 p=94481 u=admin |  An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2019-07-21 11:27:45,408 p=94481 u=admin |  failed: [home02] (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'}) => {"changed": false, "item": {"dst": "/etc/default/promtail.yaml", "src": "promtail.yaml"}, "msg": "Could not find or access 'promtail.yaml'\nSearched in:\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/promtail.yaml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2019-07-21 11:27:45,514 p=94481 u=admin |  An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2019-07-21 11:27:45,514 p=94481 u=admin |  failed: [master01] (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'}) => {"changed": false, "item": {"dst": "/etc/systemd/system/promtail.service", "src": "promtail.service"}, "msg": "Could not find or access 'promtail.service'\nSearched in:\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/promtail.service\n\t/Users/admin/Working/playbook-monitoring/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/promtail.service on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2019-07-21 11:27:45,616 p=94481 u=admin |  An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2019-07-21 11:27:45,616 p=94481 u=admin |  failed: [home02] (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'}) => {"changed": false, "item": {"dst": "/etc/systemd/system/promtail.service", "src": "promtail.service"}, "msg": "Could not find or access 'promtail.service'\nSearched in:\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/promtail.service\n\t/Users/admin/Working/playbook-monitoring/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/promtail.service on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2019-07-21 11:27:46,386 p=94481 u=admin |  An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2019-07-21 11:27:46,387 p=94481 u=admin |  failed: [home01] (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'}) => {"changed": false, "item": {"dst": "/etc/default/promtail.yaml", "src": "promtail.yaml"}, "msg": "Could not find or access 'promtail.yaml'\nSearched in:\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/files/promtail.yaml\n\t/Users/admin/Working/playbook-monitoring/promtail.yaml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2019-07-21 11:27:47,758 p=94481 u=admin |  An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2019-07-21 11:27:47,758 p=94481 u=admin |  failed: [home01] (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'}) => {"changed": false, "item": {"dst": "/etc/systemd/system/promtail.service", "src": "promtail.service"}, "msg": "Could not find or access 'promtail.service'\nSearched in:\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/roles/promtail/tasks/promtail.service\n\t/Users/admin/Working/playbook-monitoring/files/promtail.service\n\t/Users/admin/Working/playbook-monitoring/promtail.service on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2019-07-21 11:27:47,761 p=94481 u=admin |  PLAY RECAP **************************************************************************************************
+2019-07-21 11:27:47,761 p=94481 u=admin |  home01                     : ok=8    changed=3    unreachable=0    failed=1   
+2019-07-21 11:27:47,761 p=94481 u=admin |  home02                     : ok=15   changed=4    unreachable=0    failed=1   
+2019-07-21 11:27:47,762 p=94481 u=admin |  master01                   : ok=8    changed=3    unreachable=0    failed=1   
+2019-07-21 11:31:07,377 passlib.registry registered 'md5_crypt' handler: <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2019-07-21 11:31:07,382 p=26799 u=admin |  PLAY [ipmi_exporter] ****************************************************************************************
+2019-07-21 11:31:07,392 p=26799 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:31:09,140 p=26799 u=admin |  ok: [home02]
+2019-07-21 11:31:09,175 p=26799 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include RedHat specific tasks] ************************
+2019-07-21 11:31:09,231 p=26799 u=admin |  included: /Users/admin/Working/playbook-monitoring/roles/ipmi_exporter/tasks/_redhat.yml for home02
+2019-07-21 11:31:09,254 p=26799 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks._redhat: Install packages] **********************************
+2019-07-21 11:31:09,274 p=26799 u=admin |  [DEPRECATION WARNING]: Invoking "yum" only once while using a loop via squash_actions is deprecated. Instead
+ of using a loop to supply multiple items and specifying `name: "{{ item }}"`, please use `name: 
+['freeipmi', 'freeipmi-devel']` and remove the loop. This feature will be removed in version 2.11. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+2019-07-21 11:31:14,569 p=26799 u=admin |  ok: [home02] => (item=['freeipmi', 'freeipmi-devel'])
+2019-07-21 11:31:14,595 p=26799 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include Debian specific tasks] ************************
+2019-07-21 11:31:14,625 p=26799 u=admin |  skipping: [home02]
+2019-07-21 11:31:14,654 p=26799 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Create directory] *************************************
+2019-07-21 11:31:15,146 p=26799 u=admin |  ok: [home02] => (item=/etc/ipmi_exporter)
+2019-07-21 11:31:15,174 p=26799 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Install binary] **************************************
+2019-07-21 11:31:16,157 p=26799 u=admin |  ok: [home02] => (item={'src': 'ipmi_exporter', 'dst': '/usr/local/bin/ipmi_exporter'})
+2019-07-21 11:31:16,184 p=26799 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Deploy directory] ************************************
+2019-07-21 11:31:16,924 p=26799 u=admin |  ok: [home02] => (item={'src': 'ipmi.yaml', 'dst': '/etc/ipmi_exporter/ipmi.yaml'})
+2019-07-21 11:31:17,847 p=26799 u=admin |  ok: [home02] => (item={'src': 'ipmi_exporter.service', 'dst': '/etc/systemd/system/ipmi_exporter.service'})
+2019-07-21 11:31:17,870 p=26799 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Enable daemon] ****************************************
+2019-07-21 11:31:18,836 p=26799 u=admin |  changed: [home02]
+2019-07-21 11:31:18,846 p=26799 u=admin |  PLAY [node_exporter] ****************************************************************************************
+2019-07-21 11:31:18,852 p=26799 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:31:20,116 p=26799 u=admin |  ok: [home01]
+2019-07-21 11:31:20,168 p=26799 u=admin |  ok: [home02]
+2019-07-21 11:31:24,420 p=26799 u=admin |  ok: [master01]
+2019-07-21 11:31:24,448 p=26799 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Download binary] **************************************
+2019-07-21 11:31:29,786 p=26799 u=admin |  ok: [home02]
+2019-07-21 11:31:31,208 p=26799 u=admin |  ok: [home01]
+2019-07-21 11:31:35,273 p=26799 u=admin |  ok: [master01]
+2019-07-21 11:31:35,296 p=26799 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Install binary] ***************************************
+2019-07-21 11:31:35,986 p=26799 u=admin |  ok: [home02] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:31:36,049 p=26799 u=admin |  ok: [master01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:31:37,532 p=26799 u=admin |  ok: [home01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:31:37,564 p=26799 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Deploy directory] *************************************
+2019-07-21 11:31:38,602 p=26799 u=admin |  ok: [master01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:31:38,636 p=26799 u=admin |  ok: [home02] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:31:39,276 p=26799 u=admin |  ok: [master01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:31:39,421 p=26799 u=admin |  ok: [home02] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:31:40,935 p=26799 u=admin |  ok: [home01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:31:44,658 p=26799 u=admin |  ok: [home01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:31:44,684 p=26799 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Enable daemon] ****************************************
+2019-07-21 11:31:45,216 p=26799 u=admin |  changed: [home02]
+2019-07-21 11:31:45,395 p=26799 u=admin |  changed: [master01]
+2019-07-21 11:31:45,626 p=26799 u=admin |  changed: [home01]
+2019-07-21 11:31:45,638 p=26799 u=admin |  PLAY [promtail] *********************************************************************************************
+2019-07-21 11:31:45,664 p=26799 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:31:46,616 p=26799 u=admin |  ok: [master01]
+2019-07-21 11:31:46,865 p=26799 u=admin |  ok: [home02]
+2019-07-21 11:31:46,992 p=26799 u=admin |  ok: [home01]
+2019-07-21 11:31:47,018 p=26799 u=admin |  TASK [promtail : roles.promtail.tasks.main: Download binary] ************************************************
+2019-07-21 11:31:47,614 p=26799 u=admin |  ok: [home02]
+2019-07-21 11:31:47,651 p=26799 u=admin |  ok: [master01]
+2019-07-21 11:31:47,974 p=26799 u=admin |  ok: [home01]
+2019-07-21 11:31:47,999 p=26799 u=admin |  TASK [promtail : roles.promtail.tasks.main: Install binary] *************************************************
+2019-07-21 11:31:48,934 p=26799 u=admin |  ok: [home02] => (item=/tmp/promtail)
+2019-07-21 11:31:49,074 p=26799 u=admin |  ok: [master01] => (item=/tmp/promtail)
+2019-07-21 11:31:50,145 p=26799 u=admin |  ok: [home01] => (item=/tmp/promtail)
+2019-07-21 11:31:50,181 p=26799 u=admin |  TASK [promtail : roles.promtail.tasks.main: Deploy directory] ***********************************************
+2019-07-21 11:31:51,109 p=26799 u=admin |  changed: [master01] => (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'})
+2019-07-21 11:31:51,250 p=26799 u=admin |  changed: [home02] => (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'})
+2019-07-21 11:31:52,015 p=26799 u=admin |  changed: [master01] => (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'})
+2019-07-21 11:31:52,262 p=26799 u=admin |  changed: [home02] => (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'})
+2019-07-21 11:31:55,013 p=26799 u=admin |  changed: [home01] => (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'})
+2019-07-21 11:31:59,831 p=26799 u=admin |  changed: [home01] => (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'})
+2019-07-21 11:31:59,856 p=26799 u=admin |  TASK [promtail : roles.promtail.tasks.main: Enable daemon] **************************************************
+2019-07-21 11:32:00,573 p=26799 u=admin |  changed: [home02]
+2019-07-21 11:32:00,782 p=26799 u=admin |  changed: [master01]
+2019-07-21 11:32:01,008 p=26799 u=admin |  changed: [home01]
+2019-07-21 11:32:01,013 p=26799 u=admin |  PLAY RECAP **************************************************************************************************
+2019-07-21 11:32:01,013 p=26799 u=admin |  home01                     : ok=10   changed=3    unreachable=0    failed=0   
+2019-07-21 11:32:01,013 p=26799 u=admin |  home02                     : ok=17   changed=4    unreachable=0    failed=0   
+2019-07-21 11:32:01,013 p=26799 u=admin |  master01                   : ok=10   changed=3    unreachable=0    failed=0   
+2019-07-21 11:39:56,679 passlib.registry registered 'md5_crypt' handler: <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2019-07-21 11:39:56,683 p=63019 u=admin |  PLAY [ipmi_exporter] ****************************************************************************************
+2019-07-21 11:39:56,698 p=63019 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:39:58,191 p=63019 u=admin |  ok: [home02]
+2019-07-21 11:39:58,216 p=63019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include RedHat specific tasks] ************************
+2019-07-21 11:39:58,268 p=63019 u=admin |  included: /Users/admin/Working/playbook-monitoring/roles/ipmi_exporter/tasks/_redhat.yml for home02
+2019-07-21 11:39:58,292 p=63019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks._redhat: Install packages] **********************************
+2019-07-21 11:39:58,317 p=63019 u=admin |  [DEPRECATION WARNING]: Invoking "yum" only once while using a loop via squash_actions is deprecated. Instead
+ of using a loop to supply multiple items and specifying `name: "{{ item }}"`, please use `name: 
+['freeipmi', 'freeipmi-devel']` and remove the loop. This feature will be removed in version 2.11. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+2019-07-21 11:40:09,343 p=63019 u=admin |  ok: [home02] => (item=['freeipmi', 'freeipmi-devel'])
+2019-07-21 11:40:09,372 p=63019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Include Debian specific tasks] ************************
+2019-07-21 11:40:09,401 p=63019 u=admin |  skipping: [home02]
+2019-07-21 11:40:09,427 p=63019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Create directory] *************************************
+2019-07-21 11:40:09,998 p=63019 u=admin |  ok: [home02] => (item=/etc/ipmi_exporter)
+2019-07-21 11:40:10,022 p=63019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Install binary] **************************************
+2019-07-21 11:40:11,150 p=63019 u=admin |  ok: [home02] => (item={'src': 'ipmi_exporter', 'dst': '/usr/local/bin/ipmi_exporter'})
+2019-07-21 11:40:11,177 p=63019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main : Deploy directory] ************************************
+2019-07-21 11:40:12,223 p=63019 u=admin |  ok: [home02] => (item={'src': 'ipmi.yaml', 'dst': '/etc/ipmi_exporter/ipmi.yaml'})
+2019-07-21 11:40:12,941 p=63019 u=admin |  ok: [home02] => (item={'src': 'ipmi_exporter.service', 'dst': '/etc/systemd/system/ipmi_exporter.service'})
+2019-07-21 11:40:12,979 p=63019 u=admin |  TASK [ipmi_exporter : roles.ipmi_exporter.tasks.main: Enable daemon] ****************************************
+2019-07-21 11:40:13,933 p=63019 u=admin |  changed: [home02]
+2019-07-21 11:40:13,948 p=63019 u=admin |  PLAY [node_exporter] ****************************************************************************************
+2019-07-21 11:40:13,956 p=63019 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:40:15,107 p=63019 u=admin |  ok: [master01]
+2019-07-21 11:40:15,265 p=63019 u=admin |  ok: [home02]
+2019-07-21 11:40:15,562 p=63019 u=admin |  ok: [home01]
+2019-07-21 11:40:15,592 p=63019 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Download binary] **************************************
+2019-07-21 11:40:20,465 p=63019 u=admin |  ok: [home02]
+2019-07-21 11:40:22,546 p=63019 u=admin |  ok: [home01]
+2019-07-21 11:41:17,891 p=63019 u=admin |  ok: [master01]
+2019-07-21 11:41:17,926 p=63019 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Install binary] ***************************************
+2019-07-21 11:41:18,990 p=63019 u=admin |  ok: [home02] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:41:19,028 p=63019 u=admin |  ok: [master01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:41:20,196 p=63019 u=admin |  ok: [home01] => (item=/tmp/node_exporter-0.17.0.linux-amd64/node_exporter)
+2019-07-21 11:41:20,223 p=63019 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Deploy directory] *************************************
+2019-07-21 11:41:20,944 p=63019 u=admin |  ok: [master01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:41:20,963 p=63019 u=admin |  ok: [home02] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:41:21,474 p=63019 u=admin |  ok: [master01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:41:21,530 p=63019 u=admin |  ok: [home02] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:41:23,756 p=63019 u=admin |  ok: [home01] => (item={'src': 'node_exporter', 'dst': '/etc/default/node_exporter'})
+2019-07-21 11:41:27,224 p=63019 u=admin |  ok: [home01] => (item={'src': 'node_exporter.service', 'dst': '/etc/systemd/system/node_exporter.service'})
+2019-07-21 11:41:27,253 p=63019 u=admin |  TASK [node_exporter : roles.node_exporter.tasks.main: Enable daemon] ****************************************
+2019-07-21 11:41:27,751 p=63019 u=admin |  changed: [home02]
+2019-07-21 11:41:28,138 p=63019 u=admin |  changed: [home01]
+2019-07-21 11:41:28,200 p=63019 u=admin |  changed: [master01]
+2019-07-21 11:41:28,211 p=63019 u=admin |  PLAY [promtail] *********************************************************************************************
+2019-07-21 11:41:28,239 p=63019 u=admin |  TASK [Gathering Facts] **************************************************************************************
+2019-07-21 11:41:29,187 p=63019 u=admin |  ok: [master01]
+2019-07-21 11:41:29,484 p=63019 u=admin |  ok: [home02]
+2019-07-21 11:41:30,016 p=63019 u=admin |  ok: [home01]
+2019-07-21 11:41:30,081 p=63019 u=admin |  TASK [promtail : roles.promtail.tasks.main: Download binary] ************************************************
+2019-07-21 11:41:30,596 p=63019 u=admin |  ok: [home02]
+2019-07-21 11:41:30,605 p=63019 u=admin |  ok: [master01]
+2019-07-21 11:41:31,021 p=63019 u=admin |  ok: [home01]
+2019-07-21 11:41:31,049 p=63019 u=admin |  TASK [promtail : roles.promtail.tasks.main: Install binary] *************************************************
+2019-07-21 11:41:31,873 p=63019 u=admin |  ok: [home02] => (item=/tmp/promtail)
+2019-07-21 11:41:31,979 p=63019 u=admin |  ok: [master01] => (item=/tmp/promtail)
+2019-07-21 11:41:33,368 p=63019 u=admin |  ok: [home01] => (item=/tmp/promtail)
+2019-07-21 11:41:33,399 p=63019 u=admin |  TASK [promtail : roles.promtail.tasks.main: Deploy directory] ***********************************************
+2019-07-21 11:41:34,522 p=63019 u=admin |  changed: [master01] => (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'})
+2019-07-21 11:41:34,611 p=63019 u=admin |  changed: [home02] => (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'})
+2019-07-21 11:41:35,196 p=63019 u=admin |  ok: [master01] => (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'})
+2019-07-21 11:41:35,320 p=63019 u=admin |  ok: [home02] => (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'})
+2019-07-21 11:41:38,176 p=63019 u=admin |  changed: [home01] => (item={'src': 'promtail.yaml', 'dst': '/etc/default/promtail.yaml'})
+2019-07-21 11:41:41,553 p=63019 u=admin |  ok: [home01] => (item={'src': 'promtail.service', 'dst': '/etc/systemd/system/promtail.service'})
+2019-07-21 11:41:41,584 p=63019 u=admin |  TASK [promtail : roles.promtail.tasks.main: Enable daemon] **************************************************
+2019-07-21 11:41:43,265 p=63019 u=admin |  changed: [home02]
+2019-07-21 11:42:33,037 p=63019 u=admin |  changed: [master01]
+2019-07-21 11:43:05,986 p=63019 u=admin |  changed: [home01]
+2019-07-21 11:43:05,990 p=63019 u=admin |  PLAY RECAP **************************************************************************************************
+2019-07-21 11:43:05,990 p=63019 u=admin |  home01                     : ok=10   changed=3    unreachable=0    failed=0   
+2019-07-21 11:43:05,990 p=63019 u=admin |  home02                     : ok=17   changed=4    unreachable=0    failed=0   
+2019-07-21 11:43:05,990 p=63019 u=admin |  master01                   : ok=10   changed=3    unreachable=0    failed=0   

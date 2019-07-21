@@ -1,2 +1,33 @@
 ---
-#TODO
+
+- name: "roles.promtail.tasks.main: Download binary"
+  get_url:
+    url: "https://github.com/grafana/loki/releases/download/{{ promtail_version }}/promtail_{{ promtail_version }}_linux_amd64"
+    dest: /tmp/promtail
+
+- name: "roles.promtail.tasks.main: Install binary"
+  copy:
+    src: "{{ item }}"
+    remote_src: yes
+    dest: /usr/local/bin/
+    mode: 0755
+  with_items:
+    - "/tmp/promtail"
+
+- name: "roles.promtail.tasks.main: Deploy directory"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+  with_items:
+    - src: "promtail.yaml"
+      dst: "/etc/default/promtail.yaml"
+    - src: "promtail.service"
+      dst: "/etc/systemd/system/promtail.service"
+
+- name: "roles.promtail.tasks.main: Enable daemon"
+  service:
+    name: "promtail"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
