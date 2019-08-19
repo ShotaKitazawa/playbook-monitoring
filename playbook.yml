@@ -1,5 +1,10 @@
 ---
 
+- hosts: all
+  become: yes
+  roles:
+    - docker
+
 - hosts: ipmi_exporter
   become: yes
   roles:
@@ -18,4 +23,11 @@
   become: yes
   roles:
     - promtail
+
+- hosts: cadvisor
+  become: yes
+  roles:
+    - cadvisor
+    # TODO
+    #- create_prometheus_conf_cadvisor
 

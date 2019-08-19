@@ -1,0 +1,7 @@
+---
+
+docker:
+  version: latest
+
+dockerize:
+  version: v0.6.1

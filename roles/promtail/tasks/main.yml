@@ -1,5 +1,7 @@
 ---
 
+# TODO: docker化
+
 - name: "roles.promtail.tasks.main: Download binary"
   get_url:
     url: "https://github.com/grafana/loki/releases/download/{{ promtail_version }}/promtail_{{ promtail_version }}_linux_amd64"

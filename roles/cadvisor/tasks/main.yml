@@ -1,0 +1,19 @@
+---
+
+- name: "roles.cadvisor.tasks.main: Run docker container"
+  docker_container:
+    name: cadvisor
+    state: started
+    image: "google/cadvisor:{{ cadvisor_version }}"
+    exposed_ports:
+      - 8080
+    published_ports:
+      - "0.0.0.0:8080:8080"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+      - "/dev/disk/:/dev/disk:ro"
+    restart: yes
+    restart_policy: always

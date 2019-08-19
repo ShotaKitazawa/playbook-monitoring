@@ -1,4 +1,19 @@
 ---
+# TODO: docker化
+#---
+#- name: "roles.node-exporter.tasks.main: Run docker container"
+#  docker_container:
+#    name: node-exporter
+#    state: started
+#    image: "prom/node-exporter:{{ node_exporter_version }}"
+#    volumes:
+#      - "/:/rootfs:ro,rslave"
+#    pid_mode: host
+#    network_mode: host
+#    restart: yes
+#    restart_policy: always
+#    command: "--path.rootfs=/host"
+#
 
 - name: "roles.node_exporter.tasks.main: Download binary"
   unarchive:

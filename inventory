@@ -1,15 +1,21 @@
 [node_exporter]
-home01    ansible_ssh_host=192.168.0.11
-home02    ansible_ssh_host=192.168.0.12
-master01  ansible_ssh_host=192.168.0.31
+home01    ansible_ssh_host=home01.kanatakita.com
+home02    ansible_ssh_host=home02.kanatakita.com
+master01  ansible_ssh_host=master01.kanatakita.com
+ext01     ansible_ssh_host=ext01.kanatakita.com
 
 [ipmi_exporter]
-home02 ansible_ssh_host=192.168.0.12
+home02 ansible_ssh_host=home02.kanatakita.com
 
 [promtail]
-home01    ansible_ssh_host=192.168.0.11
-home02    ansible_ssh_host=192.168.0.12
-master01  ansible_ssh_host=192.168.0.31
+home01    ansible_ssh_host=home01.kanatakita.com
+home02    ansible_ssh_host=home02.kanatakita.com
+master01  ansible_ssh_host=master01.kanatakita.com
+ext01     ansible_ssh_host=ext01.kanatakita.com
+
+[cadvisor]
+home01    ansible_ssh_host=home01.kanatakita.com
+ext01     ansible_ssh_host=ext01.kanatakita.com
 
 [all:vars]
 ansible_ssh_user=root

@@ -1,5 +1,7 @@
 ---
 
+# TODO: docker化
+
 - name: "roles.ipmi_exporter.tasks.main: Include RedHat specific tasks"
   when: "ansible_os_family == 'RedHat'"
   include_tasks: _redhat.yml

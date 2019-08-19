@@ -1,0 +1,17 @@
+---
+
+- name: "roles.docker.tasks._redhat: Add repository"
+  shell: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
+
+- name: "roles.docker.tasks._redhat: Update repository"
+  yum:
+    name: '*'
+    state: latest
+
+- name: "roles.docker.tasks._redhat: Install docker-engine packages"
+  yum:
+    name: "{{ item }}"
+    state: "{{ docker.version }}"
+  with_items:
+    - "docker-ce"
+

@@ -1,0 +1,48 @@
+---
+
+- name: "roles.docker.tasks.main: Create directory"
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /root/docker
+
+- name: "roles.docker.tasks.main: Deploy directory"
+  synchronize:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    recursive: yes
+  with_items:
+    - src: "usr/lib/systemd/system/docker.service.d"
+      dst: "/usr/lib/systemd/system/"
+
+- name: "base_packages.tasks.main: Include RedHat specific tasks"
+  when: "ansible_os_family == 'RedHat'"
+  include_tasks: _redhat.yml
+
+- name: "base_packages.tasks.main: Include Debian specific tasks"
+  when: "ansible_os_family == 'Debian'"
+  include_tasks: _debian.yml
+
+- name: "roles.docker.tasks.main: Install docker-engine packages"
+  yum:
+    name: "{{ item }}"
+    state: "{{ docker.version }}"
+  with_items:
+    - "docker-ce"
+
+- name: "roles.docker.tasks.main: Enable daemon"
+  systemd:
+    name: "docker"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: "roles.docker.tasks.main: Check fstab"
+  ignore_errors: True
+  shell: "egrep '^tmpfs */var/lib/docker' /etc/fstab"
+  register: no_such_row
+
+- name: "roles.docker.tasks.main: Postscript fstab"
+  shell: "echo 'tmpfs   /var/lib/docker/tmp     tmpfs  defaults,nofail   0     0' >> /etc/fstab"
+  when: no_such_row.rc == 1

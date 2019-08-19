@@ -8,6 +8,6 @@
 ## execute playbook
 
 ```
-$ ansible-playbook -i inventory -u root site.yml
+$ ansible-playbook -i inventory -u root playbook.yml
 ```
 
